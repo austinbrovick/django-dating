@@ -47,7 +47,7 @@ def edit_profile(request):
 
     print my_profile_info.github_username
 
-    if my_profile_info.github_username != "":
+    if my_profile_info.github_username != None:
         jsonList = []
         req =requests.get('https://api.github.com/users/'+ str(my_profile_info.github_username))
         print req

@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title></title>
+	{% include "bootstrap.html" %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
 	<style>
 		#chat-body{
@@ -41,27 +42,33 @@
 		})
 
 	</script>
+	<style>
+		#container{
+			margin-left:25px;
+		}
+	</style>
 </head>
 <body>
-{% include "nav_bar.html" %}
+	{% include "nav_bar.html" %}
 
-<h3>Welcome {{current_user}}!</h3>
+<div id='container'>
+	<h3>Welcome {{current_user}}!</h3>
 
-<hr>
+	<hr>
 
-<div id='chat-body'>
-	<ul id='msg-list'>
+	<div id='chat-body'>
+		<ul id='msg-list'>
 
-	</ul>
+		</ul>
+	</div>
+	<br>
+		<form method='POST' action='/chat/groupchat'>
+			{% csrf_token %}
+			{{form}}
+			<input type='hidden' name='user' value='{{current_user.id}}'>
+			<input type='submit' value='Chat'>
+		</form>
 </div>
-<br>
-	<form method='POST' action='/chat/groupchat'>
-		{% csrf_token %}
-		{{form}}
-		<input type='hidden' name='user' value='{{current_user.id}}'>
-		<input type='submit' value='Chat'>
-	</form>
-
 
 
 </body>

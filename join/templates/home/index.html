@@ -25,140 +25,183 @@
 	</script>
 
 	<style type="text/css">
-	body{
-		background-color: linen;
-	}
-	.thumbnail{
-		width: 242px;
+/* Header */
 
-	}
-	#container{
-		border: 5px solid hotpink;
-	}
-	#partials{
-		padding: 25px;
-		width: 65%;
-		border: 5px solid red;
-		display: inline-block;
-	}
-	#signs{
-		padding: 10px;
-		vertical-align: top;
-		border: 5px solid blue;
-		width: 34%;
-		display: inline-block;
-	}
-	h1{
+	#header {
+		background: #333333 url("../static/project/Background-Images-Landscape-4.jpg") no-repeat;
+		background-size: cover;
+		color: #fff;
+		padding: 6em 0;
 		text-align: center;
-		color: hotpink;
-	}
-	a{
-		text-align: center;
+		background-position: 0% 65%;
+		position: relative;
 	}
 
-	.successes{
-		display: inline-block;
+		#header:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(16, 32, 48, 0.25);
+		}
+
+		#header > * {
+			position: relative;
+			z-index: 1;
+		}
+
+	.homepage #header {
+		padding: 8em 0;
+		background-position: center;
 	}
-	.row{
-		padding: 25px;
-		display: inline-block;
+
+	#logo {
+		color:white;
+		font-size: 2em;
 	}
-	#asdf{
-		outline: 1px solid black;
+
+	#nav > ul {
+		margin: 0;
 	}
+
+		#nav > ul > li {
+			border-radius: 10px 10px 0 0;
+			display: inline-block;
+			margin-left: 0.5em;
+			padding: 0.5em 1.5em;
+		}
+
+			#nav > ul > li a {
+				color: #FFF;
+				text-decoration: none;
+				font-size: 1.2em;
+			}
+
+			#nav > ul > li:first-child {
+				margin-left: 0;
+			}
+
+			#nav > ul > li:hover a {
+				color: #fff;
+			}
+
+			#nav > ul > li.active {
+				background: #3ac984;
+			}
+
+				#nav > ul > li.active a {
+					color: white;
+				}
+
+			#nav > ul > li > ul {
+				display: none;
+			}
+		/*Sign up button*/
+		.button {
+			background: #3ac984;
+			border-radius: 40px;
+			border: 0;
+			color: white;
+			cursor: pointer;
+			display: inline-block;
+			padding: 0.80em 2em;
+			text-align: center;
+			text-decoration: none;
+			font-size: 1.4em;
+			font-weight: 600;
+			min-width: 10em;
+		}
+
+		.wrapper.style2 {
+			background: #ececec;
+			padding: 6em 0;
+			text-align: center;
+			padding-left:20px;
+			padding-right:20px;
+		}
+
 	</style>
 	</head>
 	<body ng-app='app'>
-		<div id='container'>
-			<div id='partials'>
-				<h1><strong>Inner Join</strong></h1>
-
-				<hr>
-
-				<a href="#/route1">About Us</a> &nbsp; | &nbsp; <a href="#/route2">How it Works</a> &nbsp; | &nbsp; <a href="#/route3">Click here for surprise!</a> &nbsp; | &nbsp; <a href="#/route4">FAQs</a> &nbsp; | &nbsp; <a href="#/route5">Might be empty...might not</a> 
-
-				<hr>
-
-				<div ng-view=""></div>
-			</div>
-			<div id='signs'>
-				<div id='signin'>
-					<form action='accounts/signup' class="navbar-form navbar-right" role="sign up">
-						<div class="form-group">
-
-							<input type="text" name="username" placeholder="Username">
-							<input type="text" name="email" placeholder="Email">
-							<input type="password" name="password" placeholder="password">
-							<input type="text" name="github" placeholder="GitHub Username">
-							<select class="form-control">
-								<option>Sex</option>
-								<option>Male</option>
-								<option>Female</option>
-								<option>A Little of both</option>
-								<option>Unsure</option>
-							</select>
-							<select class="form-control">
-								<option>Interested in</option>
-								<option>Male</option>
-								<option>Female</option>
-								<option>A Little of both</option>
-								<option>Unsure</option>
-							</select>
-						</div>
-						<button type="submit" class="btn btn-info">Sign Up!</button>
-					</form>
-				</div>
-				<div id='signup'>
-					<form action='accounts/login' class="navbar-form navbar-right" role="sign in">
-						<div class="form-group">
-
-							<input type="text" name="email/username" placeholder="Email/Username">
-							<input type="password" name="password" placeholder="password">
-						</div>
-						<button type="submit" class="btn btn-info">Sign in</button>
-					</form>
-				</div>
-			</div>
-			<div id='successes'>
+		<!-- Header -->
+			<div id="header">
+				<div class="container">
+				<!-- Logo -->
+					<h1><a href="#/" id="logo">Inner Join</a></h1>
 				
-				<div class="row" id="asdf">
-					<h1>Success Stories</h1>
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<img src="../static/project/story1.jpg" alt="...">
-							<div class="caption">
-								<h3>Apple and Banana</h3>
-								<p>Inner Join brought us blah blah good times im so handsome</p>
-								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-							</div>
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#/">About Us</a></li>
+							<li><a href="#/howitworks">How it Works</a></li>
+							<li><a href="#/surprise">Click here for a surpise</a></li>
+							<li><a href="#/faqs">FAQs</a></li>
+							<li><a href="#/route5">Might be empty??</a></li>
+						</ul>
+					</nav>
+
+
+				<!-- Banner -->
+					<div id="banner">
+						<div class="container">
+							<section>
+								<header class="major">
+									<div ng-view=""></div>
+									<br>
+									<a href="/accounts/login" class="button alt">Sign In</a>
+									<br><br>
+									<a href="/accounts/signup" class="button alt">Sign Up</a>
+							</section>			
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<img src="../static/project/story2.png" alt="...">
-							<div class="caption">
-								<h3>Cilantro and Durian</h3>
-								<p>I smell good and she dont but we both taystee</p>
-								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+				</div>
+			</div> <!-- End of Header -->
+		<!-- Wrapper for success stories -->
+			<div class="wrapper style2">
+				<section class="container">
+					<header class="major">
+						<h2>Success Stories</h2>
+					</header>
+				</section>
+				<div id='successes'>	
+					<div class="row" id="asdf">
+					<!-- Success story 1 -->
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<img src="../static/project/story1.jpg" alt="...">
+								<div class="caption">
+									<h3>Apple and Banana</h3>
+									<p>Inner Join brought us blah blah good times</p>
+									<p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<img src="../static/project/story3.jpg" alt="...">
-							<div class="caption">
-								<h3>Eggplant and Frijoles</h3>
-								<p>OOOOO so tasty what a combo</p>
-								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+					<!-- Success Story 2 -->
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<img src="../static/project/story2.png" alt="...">
+								<div class="caption">
+									<h3>Cilantro and Durian</h3>
+									<p>I smell good and she dont but we both taystee</p>
+									<p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+								</div>
+							</div>
+						</div>
+					<!-- Success Story 3 -->
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<img src="../static/project/story3.jpg" alt="...">
+								<div class="caption">
+									<h3>Eggplant and Frijoles</h3>
+									<p>OOOOO so tasty what a combo</p>
+									<p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
-
-			</div>
-		</div>
 
 	</body>
 	</html>

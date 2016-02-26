@@ -7,22 +7,22 @@ app.config(function ($interpolateProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider
-        .when('/route1', {
+        .when('/', {
             templateUrl: static_url + 'home/js/partials/partial1.html',
             controller: 'RouteController1'
         })
 
-        .when('/route2', {
+        .when('/howitworks', {
             templateUrl: static_url + 'home/js/partials/partial2.html',
             controller: 'RouteController2'
         })
 
-        .when('/route3', {
+        .when('/surprise', {
             templateUrl: static_url + 'home/js/partials/partial3.html',
             controller: 'RouteController3'
         })
 
-        .when('/route4', {
+        .when('/faqs', {
             templateUrl: static_url + 'home/js/partials/partial4.html',
             controller: 'RouteController4'
         })
@@ -33,6 +33,6 @@ app.config(function($routeProvider) {
         })
 
         .otherwise({
-            redirectTo: '/route1'
+            redirectTo: '/'
         });
 });

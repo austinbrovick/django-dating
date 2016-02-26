@@ -29,34 +29,34 @@ def profile(request):
 
 
 
+    if my_profile_info.github_username != "":
+        jsonList = []
+        req =requests.get('https://api.github.com/users/'+ str(my_profile_info.github_username))
+        print req
+        jsonList.append(json.loads(req.content))
+        print jsonList
+        parsedData = []
+        userData = {}
+        if jsonList[0]:
+            # userData['name'] = jsonList[0]['name']
+            userData['html_url'] = jsonList[0]['html_url']
+            userData['followers'] = jsonList[0]['followers']
+            userData['following'] = jsonList[0]['following']
+            userData['blog'] = jsonList[0]['blog']
+            userData['email'] = jsonList[0]['email']
+            userData['public_gists'] = jsonList[0]['public_gists']
+            userData['public_repos'] = jsonList[0]['public_repos']
+            userData['avatar_url'] = jsonList[0]['avatar_url']
+            parsedData.append(userData)
 
-    jsonList = []
-    req =requests.get('https://api.github.com/users/'+ str(my_profile_info.github_username))
-    print req
-    jsonList.append(json.loads(req.content))
-    print jsonList
-    parsedData = []
-    userData = {}
-    if jsonList[0]:
-        # userData['name'] = jsonList[0]['name']
-        userData['html_url'] = jsonList[0]['html_url']
-        userData['followers'] = jsonList[0]['followers']
-        userData['following'] = jsonList[0]['following']
-        userData['blog'] = jsonList[0]['blog']
-        userData['email'] = jsonList[0]['email']
-        userData['public_gists'] = jsonList[0]['public_gists']
-        userData['public_repos'] = jsonList[0]['public_repos']
-        userData['avatar_url'] = jsonList[0]['avatar_url']
-        parsedData.append(userData)
+        gh_info = GithubInfo.objects.get(user=request.user)
+        print gh_info
+        gh_info.html_url = userData['html_url']
+        gh_info.followers = userData['followers']
+        gh_info.following = userData['following']
+        gh_info.public_repos = userData['public_repos']
 
-    gh_info = GithubInfo.objects.get(user=request.user)
-    print gh_info
-    gh_info.html_url = userData['html_url']
-    gh_info.followers = userData['followers']
-    gh_info.following = userData['following']
-    gh_info.public_repos = userData['public_repos']
-
-    gh_info.save()
+        gh_info.save()
 
 
     # print gh_info

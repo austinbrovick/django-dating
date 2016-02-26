@@ -55,7 +55,14 @@ class UserProfile(models.Model):
     current_employer = models.CharField(max_length=50, blank=True, null=True)
     race = models.CharField(max_length=50, choices=RACES, blank=True)
 
-    profile_picture = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
+    profile_picture = models.ImageField(upload_to=user_directory_path,
+        null=True,
+        blank=True,
+        width_field="width_field",
+        height_field="height_field")
+    height_field = models.IntegerField(default=0)
+    width_field = models.IntegerField(default=0)
+
 
     def __unicode__(self):
         return self.user.username

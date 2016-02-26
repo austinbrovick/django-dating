@@ -9,15 +9,18 @@
     <div id='main_wrapper' class='row'>
       <div class="col-md-6 col-md-offset-3">
 
+
         {% if user.profile_picture %}
-          <img src='{{ user.profile_picture.url }}' />
+          <img src='{{ user.profile_picture.url }}' width='300'/>
         {% endif %}
         <h1>{{user.user.first_name}} {{user.user.last_name}}</h1>
+        <h4><a href='{{ user.user.githubinfo.html_url }}'>Github Profile</a></h4>
         <ul>
           {% if user.college %}<li>College: {{user.college}}</li>{% endif %}
           {% if user.current_title %}<li>Current Title: {{user.current_title}}</li>{% endif %}
           {% if user.current_employer %}<li>Current Employer: {{user.current_employer}}</li>{% endif %}
           {% if user.race %}<li>Race: {{user.race}}</li>{% endif %}
+
         </ul>
 
       </div>

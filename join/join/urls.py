@@ -17,9 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from home import views
 
 
 urlpatterns = [
+    url(r'^$', views.index, name='home-index'),
+    url(r'^chat/?', include('chat.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^profile/', include('profiles.urls')),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/accounts/login'}),

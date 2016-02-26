@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'matches',
     'algorithms',
     'profiles',
+    'home',
+    'chat',
 ]
 
 AUTHENTICATION_BACKENDS = (

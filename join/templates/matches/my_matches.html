@@ -10,13 +10,17 @@
       <h1>My matches</h1>
       {% for match in matches1 %}
         {% if match.two.user.username != user.username %}
-          <h3>{{match.two}}</h3>
+        <h3><a href='{% url "prospect_profile" match.two.user.username %}'>{{match.two}}</a></h3>
+          {% if match.two.user.userprofile.profile_picture %}
+            <img src='{{ match.two.user.userprofile.profile_picture.url }}' width='300'>
+          {% endif %}
         {% endif %}
       {% endfor %}
 
       {% for match in matches2 %}
         {% if match.one.user.username != user.username %}
           <h3>{{match.one}}</h3>
+          <h3>{{match.one.username}}</h3>
         {% endif %}
       {% endfor %}
     </div>

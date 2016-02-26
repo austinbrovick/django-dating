@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.apps import apps
 
@@ -70,7 +70,7 @@ def match_prospect(request, username):
 
 
     print username
-    return HttpResponse("we made it")
+    return redirect("prospects")
 
 
 def my_matches(request):

@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title></title>
+	{% include "bootstrap.html" %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+	<style>
+		#chat-body{
+			height: 200px;
+			width: 500px;
+			border: 1px solid black;
+			overflow-y:scroll;
+		}
+		#msg-list{
+			overflow-y:scroll;
+		}
+	</style>
+
+	<script>
+		$(document).ready(function(){
+
+			function getMessages(){
+				console.log('GEt messages')
+			    if (!scrolling) {
+			        $.get('/chat/messages/', function(messages){
+			            $('#msg-list').html(messages);
+			            var chatlist = document.getElementById('chat-body');
+			            chatlist.scrollTop = chatlist.scrollHeight;
+			        });
+			    }
+			    scrolling = false;
+			}
+
+			var scrolling = false;
+
+
+		    $('#chat-body').on('scroll', function(){
+		        scrolling = true;
+		    });
+
+		    refreshTimer = setInterval(getMessages, 1000);
+
+		})
+
+	</script>
+	<style>
+		#container{
+			margin-left:25px;
+		}
+	</style>
+</head>
+<body>
+	{% include "nav_bar.html" %}
+
+<div id='container'>
+	<h3>Welcome {{current_user}}!</h3>
+
+	<hr>
+
+	<div id='chat-body'>
+		<ul id='msg-list'>
+
+		</ul>
+	</div>
+	<br>
+		<form method='POST' action='/chat/groupchat'>
+			{% csrf_token %}
+			{{form}}
+			<input type='hidden' name='user' value='{{current_user.id}}'>
+			<input type='submit' value='Chat'>
+		</form>
+</div>
+
+
+</body>
+</html>

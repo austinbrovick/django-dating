@@ -29,7 +29,39 @@ def profile(request):
 
 
 
-    if my_profile_info.github_username != "":
+
+
+    # print gh_info
+    # print gh_info.followers
+    # info = {
+    # 'github': parsedData[0],
+    # 'name': 'Garik',
+    # 'age': '24',
+    # 'school': 'UW',
+    # }
+    context = {
+        "user" : my_profile_info,
+    }
+    return render(request, "profiles/my_profile.html", context)
+
+@login_required
+def edit_profile_page(request):
+    user_form = get_object_or_404(UserProfile, user=request.user)
+    form = UserProfileForm(instance=user_form)
+    context = {
+        "user" : request.user,
+        "form" : form,
+    }
+    return render(request, "profiles/edit_profile.html", context)
+
+@login_required
+def edit_profile(request):
+    my_profile_info, created = UserProfile.objects.get_or_create(user=request.user)
+    github, created = GithubInfo.objects.get_or_create(user=request.user)
+
+
+
+    if my_profile_info.github_username != None:
         jsonList = []
         req =requests.get('https://api.github.com/users/'+ str(my_profile_info.github_username))
         print req
@@ -59,36 +91,10 @@ def profile(request):
         gh_info.save()
 
 
-    # print gh_info
-    # print gh_info.followers
-    # info = {
-    # 'github': parsedData[0],
-    # 'name': 'Garik',
-    # 'age': '24',
-    # 'school': 'UW',
-    # }
-    context = {
-        "user" : my_profile_info,
-    }
-    return render(request, "profiles/my_profile.html", context)
-
-@login_required
-def edit_profile_page(request):
-    user_form = get_object_or_404(UserProfile, user=request.user)
-    form = UserProfileForm(instance=user_form)
-    context = {
-        "user" : request.user,
-        "form" : form,
-    }
-    return render(request, "profiles/edit_profile.html", context)
-
-@login_required
-def edit_profile(request):
-    my_profile, created = UserProfile.objects.get_or_create(user=request.user)
-    github, created = GithubInfo.objects.get_or_create(user=request.user)
 
 
-    form = UserProfileForm(request.POST or None, request.FILES or None, instance=my_profile)
+
+    form = UserProfileForm(request.POST or None, request.FILES or None, instance=my_profile_info)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.user = request.user

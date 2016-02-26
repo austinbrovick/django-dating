@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% include "bootstrap.html" %}
+</head>
+<body>
+  {% include "nav_bar.html" %}
+    <div id='main_wrapper'>
+          {% if prospect.userprofile.profile_picture %}
+            <img src='{{ prospect.userprofile.profile_picture.url }}' width='300'/>
+          {% endif %}
+          <h1>{{prospect.first_name}} {{prospect.last_name}}</h1>
+          {% if prospect.userprofile.github_username %}<h4><a href='{{ prospect.githubinfo.html_url }}'>Github Profile</a></h4> {% endif %}
+          {% if prospect.userprofile.github_username %} <h5>Followers: {{prospect.githubinfo.followers}}</h5> {% endif %}
+          {% if prospect.userprofile.github_username %} <h5>Following: {{prospect.githubinfo.following}}</h5> {% endif %}
+          {% if prospect.userprofile.github_username %} <h5>Public Repos: {{prospect.githubinfo.public_repos}}</h5> {% endif %}
+    </div>
+</body>
+
+
+</html>

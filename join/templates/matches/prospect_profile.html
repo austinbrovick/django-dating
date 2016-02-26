@@ -16,10 +16,12 @@
               {% if prospect.userprofile.github_username %} <h5>Following: {{prospect.githubinfo.following}}</h5> {% endif %}
               {% if prospect.userprofile.github_username %} <h5>Public Repos: {{prospect.githubinfo.public_repos}}</h5> {% endif %}
               {% if status %}
+                <form method='post' action='{% url "match_prospect" prospect.username %}'>
+                  {% csrf_token %}
+                  <input type='submit' value='match'>
+                </form>
 
                 {% if prospect.userprofile.github_username %}<h4><a href='{{ prospect.githubinfo.html_url }}'>Github Profile</a></h4> {% endif %}
-
-
                 {% if prospect.userprofile.college %} <h5>College: {{prospect.userprofile.college}}</h5> {% endif %}
                 {% if prospect.userprofile.current_title %} <h5>Current Title: {{prospect.userprofile.current_title}}</h5> {% endif %}
                 {% if prospect.userprofile.current_employer %} <h5>Current Employer {{prospect.userprofile.current_employer}}</h5> {% endif %}

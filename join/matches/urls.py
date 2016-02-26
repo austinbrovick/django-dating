@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
   url(r'^$', views.prospects, name='prospects'),
   url(r'^prospect/(?P<username>\w+)/$', views.prospect_profile, name='prospect_profile'),
+  url(r'^match_prospect/(?P<username>\w+)/$', views.match_prospect, name='match_prospect'),
+  url(r'^my_matches/', views.my_matches, name='my_matches'),
 ]
 
 

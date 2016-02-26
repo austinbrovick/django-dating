@@ -20,10 +20,16 @@
 
 
         <ul>
+          {% if user.bio %}<li>Bio: {{user.bio}}</li>{% endif %}
           {% if user.college %}<li>College: {{user.college}}</li>{% endif %}
           {% if user.current_title %}<li>Current Title: {{user.current_title}}</li>{% endif %}
           {% if user.current_employer %}<li>Current Employer: {{user.current_employer}}</li>{% endif %}
+          {% if user.favorite_programming_language %}<li>Favorite Programming Language: </li>{% endif %}
           {% if user.race %}<li>Race: {{user.race}}</li>{% endif %}
+
+          {% if user.github_username %} <li>Followers: {{user.user.githubinfo.followers}}</li> {% endif %}
+          {% if user.github_username %} <li>Following: {{user.user.githubinfo.following}}</li> {% endif %}
+          {% if user.github_username %} <li>Public Repos: {{user.user.githubinfo.public_repos}}</li> {% endif %}
 
         </ul>
 

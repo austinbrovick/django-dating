@@ -10,6 +10,7 @@ class UserProfileForm(forms.ModelForm):
             "seeking",
             "github_username",
             "favorite_programming_language",
+            "bio",
             "profile_picture",
             "college",
             "current_title",

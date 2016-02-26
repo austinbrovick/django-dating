@@ -49,6 +49,7 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=15, choices=GENDERS)
     seeking = models.CharField(max_length=15, choices=SEEKING)
     github_username = models.CharField(max_length=30, blank=True, null=True)
+    bio = models.TextField(blank=True)
     favorite_programming_language = models.CharField(max_length=50, blank=True, choices=PL)
     college = models.CharField(max_length=30, blank=True, null=True)
     current_title = models.CharField(max_length=30, blank=True, null=True)

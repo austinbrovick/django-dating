@@ -6,14 +6,16 @@
 </head>
 <body>
   {% include "nav_bar.html" %}
-    <div id='main_wrapper'>
-      <h3>Solve this algorithm to find out more</h3>
-      {{algorithm}}
-      <form method='post' action='{% url "check_answer" algorithm.creator.username %}'>
-        {% csrf_token %}
-        <input type='text' name='guess'>
-        <input type='submit' value='check answer'>
-      </form>
+    <div id='main_wrapper' class='row'>
+      <div class='col-md-6 col-md-offset-3'>
+        <h3>Solve this algorithm to find out more</h3>
+        {{algorithm}}
+        <form method='post' action='{% url "check_answer" algorithm.creator.username %}'>
+          {% csrf_token %}
+          <input type='text' name='guess'>
+          <input type='submit' value='check answer'>
+        </form>
+      </div>
     </div>
 </body>
 

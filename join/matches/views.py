@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 UserProfile = apps.get_app_config('profiles').models['userprofile']
 Algo = apps.get_app_config('algorithms').models['algo']
+PPLWhoHaveSolvedAlgo = apps.get_app_config('algorithms').models['pplwhohavesolvedalgo']
 
 
 # Create your views here.
@@ -26,7 +27,21 @@ def prospect_profile(request, username):
     user = User.objects.get(username=username)
     print user
     print user.githubinfo.html_url
+    me = request.user
+
+    algo_creator = User.objects.get(username=username)
+    algo_solver = UserProfile.objects.get(user=me)
+
+    view_status = PPLWhoHaveSolvedAlgo.objects.filter(algo__creator=algo_creator, solver=algo_solver)
+    print view_status
+    if view_status:
+        status = True
+    else:
+        status = False
+    print status
+
     context = {
         "prospect" : user,
+        "status" : status,
     }
     return render(request, 'matches/prospect_profile.html', context)

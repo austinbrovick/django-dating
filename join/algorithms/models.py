@@ -12,11 +12,12 @@ class Algo(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.creator.username
+        return self.algorithm
 
 class PPLWhoHaveSolvedAlgo(models.Model):
     algo = models.ForeignKey(Algo, on_delete=models.CASCADE)
     solver = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.algo
+        return unicode(self.algo)

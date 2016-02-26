@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
   url(r'^create_page/', views.create_algo_page, name='create_algo_page'),
   url(r'^create_algo/', views.create_algo, name='create_algo'),
+  url(r'^solve_alog/(?P<username>\w+)/', views.solve_algo, name='solve_algo'),
+  url(r'^check_answer/(?P<creator>\w+)', views.check_answer, name='check_answer'),
 ]
 
 

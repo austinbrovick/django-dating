@@ -33,6 +33,28 @@ def create_algo(request):
 
 
 
+def solve_algo(request, username):
+  prospect = User.objects.get(username=username)
+  algorithm = Algo.objects.get(creator=prospect)
+  print algorithm.creator.username
+  context = {
+    "algorithm" : algorithm,
+  }
+  return render(request, "algorithms/algorithm.html", context)
+  return HttpResponse("fuck yes!!!!")
+
+def check_answer(request, creator):
+  solver = UserProfile.objects.get(user=request.user)
+  obj = User.objects.get(username=creator)
+  algo = Algo.objects.get(creator=obj)
+  guess = request.POST.get('guess')
+  if guess == algo.answer:
+    PPLWhoHaveSolvedAlgo.objects.create(algo=algo, solver=solver)
+    return HttpResponse("right answer!")
+  else:
+    return HttpResponse("fuck yes!!!!")
+
+
 
 
 

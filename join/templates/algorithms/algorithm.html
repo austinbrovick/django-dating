@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% include "bootstrap.html" %}
+</head>
+<body>
+  {% include "nav_bar.html" %}
+    <div id='main_wrapper'>
+      <h3>Solve this algorithm to find out more</h3>
+      {{algorithm}}
+      <form method='post' action='{% url "check_answer" algorithm.creator.username %}'>
+        {% csrf_token %}
+        <input type='text' name='guess'>
+        <input type='submit' value='check answer'>
+      </form>
+    </div>
+</body>
+
+
+</html>

@@ -6,15 +6,28 @@
 </head>
 <body>
   {% include "nav_bar.html" %}
-    <div id='main_wrapper'>
-          {% if prospect.userprofile.profile_picture %}
-            <img src='{{ prospect.userprofile.profile_picture.url }}' width='300'/>
-          {% endif %}
-          <h1>{{prospect.first_name}} {{prospect.last_name}}</h1>
-          {% if prospect.userprofile.github_username %}<h4><a href='{{ prospect.githubinfo.html_url }}'>Github Profile</a></h4> {% endif %}
-          {% if prospect.userprofile.github_username %} <h5>Followers: {{prospect.githubinfo.followers}}</h5> {% endif %}
-          {% if prospect.userprofile.github_username %} <h5>Following: {{prospect.githubinfo.following}}</h5> {% endif %}
-          {% if prospect.userprofile.github_username %} <h5>Public Repos: {{prospect.githubinfo.public_repos}}</h5> {% endif %}
+    <div id='main_wrapper' class='row'>
+      <div class="col-md-6 col-md-offset-3">
+              {% if prospect.userprofile.profile_picture %}
+                <img src='{{ prospect.userprofile.profile_picture.url }}' width='300'/>
+              {% endif %}
+              <h1>{{prospect.first_name}} {{prospect.last_name}}</h1>
+              {% if prospect.userprofile.github_username %}<h4><a href='{{ prospect.githubinfo.html_url }}'>Github Profile</a></h4> {% endif %}
+              {% if prospect.userprofile.github_username %} <h5>Followers: {{prospect.githubinfo.followers}}</h5> {% endif %}
+              {% if prospect.userprofile.github_username %} <h5>Following: {{prospect.githubinfo.following}}</h5> {% endif %}
+              {% if prospect.userprofile.github_username %} <h5>Public Repos: {{prospect.githubinfo.public_repos}}</h5> {% endif %}
+              {% if status %}
+                {% if prospect.userprofile.college %} <h5>College: {{prospect.userprofile.college}}</h5> {% endif %}
+                {% if prospect.userprofile.current_title %} <h5>Current Title: {{prospect.userprofile.current_title}}</h5> {% endif %}
+                {% if prospect.userprofile.current_employer %} <h5>Current Employer {{prospect.userprofile.current_employer}}</h5> {% endif %}
+                {% if prospect.userprofile.favorite_programming_language %} <h5>Public Repos: {{prospect.userprofile.favorite_programming_language}}</h5> {% endif %}
+              {% else %}
+                <form method='post' action='{% url "solve_algo" prospect.username %}'>
+                  {% csrf_token %}
+                  <input type='submit' value='Solve Algorithm to See Profile Details'>
+                </form>
+              {% endif %}
+      </div>
     </div>
 </body>
 

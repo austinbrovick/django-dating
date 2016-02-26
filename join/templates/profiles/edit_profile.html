@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% include "bootstrap.html" %}
+</head>
+<body>
+  {% include "nav_bar.html" %}
+    <div id='main_wrapper'>
+
+        <h1>Edit Profile</h1>
+        <form method='post' action='{% url "edit_profile" %}' enctype='multipart/form-data'>{% csrf_token %}
+          {{form.as_p}}
+          <input type='submit' value='edit' />
+        </form>
+
+    </div>
+</body>
+
+
+</html>

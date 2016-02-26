@@ -21,7 +21,11 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^profile/', include('profiles.urls')),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/accounts/login'}),
     url(r'^accounts/', include('allauth.urls')),
+
+    url(r'^profile/$', 'profiles.views.profile', name='my_profile'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% include "bootstrap.html" %}
+</head>
+<body>
+    {% include "nav_bar.html" %}
+    <div id='main_wrapper' class='row'>
+      <div class="col-md-6 col-md-offset-3">
+
+        {% if user.profile_picture %}
+          <img src='{{ user.profile_picture.url }}' />
+        {% endif %}
+        <h1>{{user.user.first_name}} {{user.user.last_name}}</h1>
+        <ul>
+          {% if user.college %}<li>College: {{user.college}}</li>{% endif %}
+          {% if user.current_title %}<li>Current Title: {{user.current_title}}</li>{% endif %}
+          {% if user.current_employer %}<li>Current Employer: {{user.current_employer}}</li>{% endif %}
+          {% if user.race %}<li>Race: {{user.race}}</li>{% endif %}
+        </ul>
+
+      </div>
+    </div>
+
+</body>
+
+
+</html>

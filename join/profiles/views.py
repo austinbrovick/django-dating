@@ -9,6 +9,10 @@ from .models import UserProfile, GithubInfo
 import requests
 import json
 
+
+from django.apps import apps
+Algo = apps.get_app_config('algorithms').models['algo']
+
 User = get_user_model() # getting the current user as the User Object
 
 
@@ -18,27 +22,9 @@ User = get_user_model() # getting the current user as the User Object
 def profile(request):
     me = get_object_or_404(User, id=request.user.id)
     my_profile_info, created = UserProfile.objects.get_or_create(user=me)
+    my_algo, created = Algo.objects.get_or_create(creator=request.user)
     github, created = GithubInfo.objects.get_or_create(user=request.user)
 
-
-
-
-
-    print my_profile_info.college
-    print my_profile_info.github_username
-
-
-
-
-
-    # print gh_info
-    # print gh_info.followers
-    # info = {
-    # 'github': parsedData[0],
-    # 'name': 'Garik',
-    # 'age': '24',
-    # 'school': 'UW',
-    # }
     context = {
         "user" : my_profile_info,
     }

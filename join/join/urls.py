@@ -27,6 +27,7 @@ urlpatterns = [
 
     url(r'^profile/$', 'profiles.views.profile', name='my_profile'),
     url(r'^matches/', include('matches.urls')),
+    url(r'^algorithms/', include('algorithms.urls')),
 ]
 
 if settings.DEBUG:

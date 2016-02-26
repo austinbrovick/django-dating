@@ -5,6 +5,8 @@ from django.apps import apps
 from django.contrib.auth.models import User
 
 UserProfile = apps.get_app_config('profiles').models['userprofile']
+Algo = apps.get_app_config('algorithms').models['algo']
+
 
 # Create your views here.
 def prospects(request):

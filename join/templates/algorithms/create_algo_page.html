@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% include "bootstrap.html" %}
+</head>
+<body>
+  {% include "nav_bar.html" %}
+    <div id='main_wrapper'>
+      <form method='post' action='{% url "create_algo" %}'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type='submit' value='make this my algorithm'>
+      </form>
+    </div>
+</body>
+
+
+</html>

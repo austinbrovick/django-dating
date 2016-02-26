@@ -20,7 +20,7 @@
                 {% if prospect.userprofile.college %} <h5>College: {{prospect.userprofile.college}}</h5> {% endif %}
                 {% if prospect.userprofile.current_title %} <h5>Current Title: {{prospect.userprofile.current_title}}</h5> {% endif %}
                 {% if prospect.userprofile.current_employer %} <h5>Current Employer {{prospect.userprofile.current_employer}}</h5> {% endif %}
-                {% if prospect.userprofile.favorite_programming_language %} <h5>Public Repos: {{prospect.userprofile.favorite_programming_language}}</h5> {% endif %}
+                {% if prospect.userprofile.favorite_programming_language %} <h5>Favorite Programming Language: {{prospect.userprofile.favorite_programming_language}}</h5> {% endif %}
               {% else %}
                 <form method='post' action='{% url "solve_algo" prospect.username %}'>
                   {% csrf_token %}

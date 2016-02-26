@@ -16,7 +16,7 @@ class Algo(models.Model):
 
 class PPLWhoHaveSolvedAlgo(models.Model):
     algo = models.ForeignKey(Algo, on_delete=models.CASCADE)
-    solver = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    solver = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):

@@ -45,9 +45,9 @@ def edit_profile(request):
     my_profile_info, created = UserProfile.objects.get_or_create(user=request.user)
     github, created = GithubInfo.objects.get_or_create(user=request.user)
 
+    print my_profile_info.github_username
 
-
-    if my_profile_info.github_username != None:
+    if my_profile_info.github_username != "":
         jsonList = []
         req =requests.get('https://api.github.com/users/'+ str(my_profile_info.github_username))
         print req
@@ -56,7 +56,6 @@ def edit_profile(request):
         parsedData = []
         userData = {}
         if jsonList[0]:
-            # userData['name'] = jsonList[0]['name']
             userData['html_url'] = jsonList[0]['html_url']
             userData['followers'] = jsonList[0]['followers']
             userData['following'] = jsonList[0]['following']
@@ -75,9 +74,6 @@ def edit_profile(request):
         gh_info.public_repos = userData['public_repos']
 
         gh_info.save()
-
-
-
 
 
     form = UserProfileForm(request.POST or None, request.FILES or None, instance=my_profile_info)

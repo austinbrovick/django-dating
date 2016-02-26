@@ -45,12 +45,30 @@ def solve_algo(request, username):
 
 def check_answer(request, creator):
   solver = UserProfile.objects.get(user=request.user)
-  obj = User.objects.get(username=creator)
-  algo = Algo.objects.get(creator=obj)
+  creator_obj = User.objects.get(username=creator)
+  algo = Algo.objects.get(creator=creator_obj)
   guess = request.POST.get('guess')
   if guess == algo.answer:
     PPLWhoHaveSolvedAlgo.objects.create(algo=algo, solver=solver)
-    return HttpResponse("right answer!")
+    user_profile = User.objects.get(username=creator)
+    me = request.user
+    algo_creator = User.objects.get(username=creator)
+    algo_solver = UserProfile.objects.get(user=me)
+    view_status = PPLWhoHaveSolvedAlgo.objects.filter(algo__creator=algo_creator, solver=algo_solver)
+    print view_status
+    if view_status:
+        status = True
+    else:
+        status = False
+    print status
+
+    context = {
+        "prospect" : creator_obj,
+        "status" : status,
+    }
+    return render(request, 'matches/prospect_profile.html', context)
+
+
   else:
     return HttpResponse("fuck yes!!!!")
 
